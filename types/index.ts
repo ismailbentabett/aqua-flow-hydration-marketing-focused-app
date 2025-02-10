@@ -7,3 +7,13 @@ export interface Product {
   imageUrl: string
   category: string
 }
+
+export type SortOption = 'name' | 'price-asc' | 'price-desc'
+
+export interface FilterOptions {
+  query?: string
+  minPrice?: number
+  maxPrice?: number
+  categories?: string[]
+  sortBy?: SortOption
+}
