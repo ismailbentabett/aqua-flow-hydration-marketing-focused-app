@@ -1,6 +1,30 @@
-import ProductCard from "@/components/ui/ProductCard";
-import { products } from "@/data/products";
-import Link from "next/link";
+import Link from "next/link"
+import { Suspense } from "react"
+import ProductCard from "@/components/ui/ProductCard"
+import ProductCardSkeleton from "@/components/ui/ProductCardSkeleton"
+import { getProducts } from "./actions"
+
+async function FeaturedProducts() {
+  const products = await getProducts()
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {products.slice(0, 3).map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))}
+    </div>
+  )
+}
+
+function FeaturedProductsSkeleton() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {Array.from({ length: 3 }).map((_, i) => (
+        <ProductCardSkeleton key={i} />
+      ))}
+    </div>
+  )
+}
 
 export default function Home() {
   return (
@@ -15,8 +39,8 @@ export default function Home() {
               Mindful hydration for modern living
             </h1>
             <p className="text-xl text-neutral-600 mb-8">
-              Premium water bottles crafted for sustainability and style. Keep
-              your drinks at the perfect temperature, wherever life takes you.
+              Premium water bottles crafted for sustainability and style. Keep your
+              drinks at the perfect temperature, wherever life takes you.
             </p>
             <Link
               href="/products"
@@ -54,8 +78,8 @@ export default function Home() {
                 Temperature Control
               </h3>
               <p className="text-neutral-600">
-                24-hour cold, 12-hour hot temperature retention for optimal
-                drink enjoyment.
+                24-hour cold, 12-hour hot temperature retention for optimal drink
+                enjoyment.
               </p>
             </div>
             <div className="text-center">
@@ -115,13 +139,11 @@ export default function Home() {
           <h2 className="text-3xl font-medium text-neutral-900 text-center mb-16">
             Featured Products
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {products.slice(0, 3).map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          <Suspense fallback={<FeaturedProductsSkeleton />}>
+            <FeaturedProducts />
+          </Suspense>
         </div>
       </section>
     </>
-  );
+  )
 }
