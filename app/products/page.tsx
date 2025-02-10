@@ -1,20 +1,16 @@
-import { getProducts } from "@/app/actions";
-import FilterBar from "@/components/features/products/FilterBar";
-import ProductSearch from "@/components/features/products/ProductSearch";
+import { getProducts } from "@/app/actions"
+import FilterBar from "@/components/features/products/FilterBar"
+import ProductSearch from "@/components/features/products/ProductSearch"
+import { use } from "react"
 
-export default async function ProductsPage() {
-  const initialProducts = await getProducts();
+export default function ProductsPage() {
+  const initialProducts = use(getProducts())
 
   return (
     <div className="max-w-screen-xl mx-auto px-6 py-16">
       <div className="max-w-2xl mx-auto text-center mb-16">
-        <h1 className="text-3xl font-medium text-neutral-900 mb-4">
-          Our Collection
-        </h1>
-        <p className="text-neutral-600">
-          Discover our range of premium water bottles designed for every
-          lifestyle.
-        </p>
+        <h1 className="text-3xl font-medium text-neutral-900 mb-4">Our Collection</h1>
+        <p className="text-neutral-600">Discover our range of premium water bottles designed for every lifestyle.</p>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         <aside className="lg:col-span-1">
@@ -25,5 +21,5 @@ export default async function ProductsPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }
