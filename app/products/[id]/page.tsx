@@ -2,14 +2,12 @@ import { notFound } from "next/navigation";
 import { getProductById } from "@/app/actions";
 import ProductDetail from "@/components/features/products/ProductDetail";
 
-interface PageProps {
-  params: {
-    id: string;
-  };
-  searchParams: { [key: string]: string | string[] | undefined };
-}
-
-export default async function ProductPage({ params }: PageProps) {
+export default async function ProductPage({
+  params,
+}: {
+  params: { id: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
   const product = await getProductById(params.id);
 
   if (!product) notFound();
