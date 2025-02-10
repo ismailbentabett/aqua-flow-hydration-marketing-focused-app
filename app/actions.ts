@@ -1,7 +1,6 @@
 "use server";
 
 import { products } from "@/data/products";
-import type { Product } from "@/types";
 import {
   processSearchTerms,
   matchesSearchTerms,
@@ -10,6 +9,7 @@ import {
   sortProducts,
 } from "@/lib/product-filters";
 import { extractFilterOptions } from "@/lib/form-utils";
+import { Product } from "@/types/product.types";
 
 export async function getProducts(): Promise<Product[]> {
   return products;

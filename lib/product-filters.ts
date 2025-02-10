@@ -1,4 +1,5 @@
-import type { Product, SortOption } from "@/types";
+import { ProductSortOption } from "@/types/filter.types";
+import { Product } from "@/types/product.types";
 
 export function processSearchTerms(query: string): string[] {
   return query
@@ -48,7 +49,7 @@ export function applyCategoryFilter(
 
 export function sortProducts(
   products: Product[],
-  sortBy: SortOption = "name"
+  sortBy: ProductSortOption = "name"
 ): Product[] {
   return [...products].sort((a, b) => {
     switch (sortBy) {

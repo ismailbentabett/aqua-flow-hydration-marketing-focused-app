@@ -1,6 +1,6 @@
-import type { FilterOptions, SortOption } from "@/types"
+import { ProductFilterOptions, ProductSortOption } from "@/types/filter.types";
 
-export function extractFilterOptions(formData: FormData): FilterOptions {
+export function extractFilterOptions(formData: FormData): ProductFilterOptions  {
   return {
     query: formData.get("query") as string | undefined,
     minPrice: formData.get("minPrice") 
@@ -10,6 +10,6 @@ export function extractFilterOptions(formData: FormData): FilterOptions {
       ? Number(formData.get("maxPrice"))
       : undefined,
     categories: formData.getAll("categories") as string[],
-    sortBy: (formData.get("sortBy") as SortOption) || "name"
+    sortBy: (formData.get("sortBy") as ProductSortOption ) || "name"
   }
 }

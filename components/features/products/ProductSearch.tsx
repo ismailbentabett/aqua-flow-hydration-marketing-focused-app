@@ -2,10 +2,10 @@
 
 import { filterProducts } from "@/app/actions";
 import useDebounce from "@/hooks/useDebounce";
-import type { Product } from "@/types";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
 import ProductGrid from "./ProductGrid";
+import { Product } from "@/types/product.types";
 
 interface ProductSearchProps {
   initialProducts: Product[];

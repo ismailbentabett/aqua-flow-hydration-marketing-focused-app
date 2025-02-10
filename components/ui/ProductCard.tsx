@@ -1,6 +1,6 @@
-import type { Product } from "@/types";
 import Link from "next/link";
 import ImageFallback from "./ImageFallback";
+import { Product } from "@/types/product.types";
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
